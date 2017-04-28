@@ -1,0 +1,125 @@
+
+#header, #footer {
+    background: none repeat scroll 0 0 #54aa9a;
+    height: 20px;
+	padding:0px;
+}
+h1,input[name="saveforlater"]{
+	display:none;
+}
+.clbox4 p {
+    text-align: center;
+}
+div.clbox4 {
+    font-size: 22px;
+}
+body {
+    background: none repeat scroll 0 0 #e6edf1;
+}
+
+#form_container {
+    background: none repeat scroll 0 0 #fff;
+    border: 2px solid #998731;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 45px;
+    padding: 10px;
+    width: 50%;
+	box-shadow: 10px 10px 28px -7px;
+} 
+div.clbox4 {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0) !important;
+    border-radius: 0;
+    color: #585858;
+    font-size: 1.3em;
+    margin-bottom: 25px;
+    margin-top: 0 !important;
+    padding: 5px;
+}
+
+.clbox4 p{
+    color: #000;
+    font-family: arial;
+    font-size: 1.6em;
+    font-weight: normal;
+    line-height: 124%;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+input[type="text"], textarea {
+    border: thin solid;
+	font-size: 14px;
+}
+.false_label, label {
+    color: #000;
+    font-family: "Roboto",sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 7px;
+    text-align: left;
+    text-transform: none;
+}
+
+.multi-row > br {
+    display: none;
+}
+.multi-row .row.cleaformx > label {
+    display: inline;
+    left: -13px;
+    position: relative;
+    top: 15px;
+}
+span.multi-row {
+    display: block;
+    text-align: center;
+}
+
+span.multi-row:before {
+    content: "Not at all likely";
+    font-family: arial;
+    font-size: 13px;
+    position: relative;
+    top: 9px;
+	left: -9px;
+}
+
+span.multi-row:after {
+    content: "Extremely likely";
+    font-family: arial;
+    font-size: 13px;
+    position: relative;
+    top: 9px;
+}
+
+input[type='submit']{
+	background: #25A6E1;
+	background: -moz-linear-gradient(top,#25A6E1 0%,#188BC0 100%);
+	background: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#25A6E1),color-stop(100%,#188BC0));
+	background: -webkit-linear-gradient(top,#25A6E1 0%,#188BC0 100%);
+	background: -o-linear-gradient(top,#25A6E1 0%,#188BC0 100%);
+	background: -ms-linear-gradient(top,#25A6E1 0%,#188BC0 100%);
+	background: linear-gradient(top,#25A6E1 0%,#188BC0 100%);
+	filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#25A6E1',endColorstr='#188BC0',GradientType=0);
+	padding:8px 13px;
+	color:#fff;
+	font-family:'Helvetica Neue',sans-serif;
+	font-size:17px;
+	border-radius:4px;
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	border:1px solid #1A87B9
+}
+.btn-submit {
+    text-align: center;
+}
+input[type='radio']{
+	border:none;
+}
+.textarea {
+    display: none;
+}
+table{
+	width:100%;
+}

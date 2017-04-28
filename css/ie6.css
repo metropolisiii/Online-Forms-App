@@ -1,0 +1,9 @@
+/*SECONDARY TEMPLATE*/
+#main {padding-left:0px;} /*IE 5px bug...set left padding to 0*/
+
+/*TERTIARY TEMPLATE*/
+#main2 {padding-right:0;} /*IE 5px bug...set right padding to 0*/
+
+#promo {z-index:-1;}
+#main {position:relative;z-index:-1;}
+#slideshow2 {left:0px;}

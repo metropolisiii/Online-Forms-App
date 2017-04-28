@@ -1,0 +1,270 @@
+/*****************************************************************
+CSS Stylesheet - NAV
+
+Website: mycompany
+Author: Brandt Reed
+E-mail: brandt@treblered.com
+Created: 2009.10.31
+*****************************************************************/
+
+
+/***************************************************************
+Top Navigation
+****************************************************************/
+ul.nav-top {position: absolute; top:15px; right:5px; }
+ul.nav-top li {float: left;display: inline;padding: 2px 6px;}
+ul.nav-top a {margin-left:5px;padding: 4px 6px; }
+
+
+/***************************************************************
+Technologies Tab table
+****************************************************************/
+.tbl-tech {width: 100%;}
+.tbl-tech td {padding: 8px;vertical-align: top;}
+.tbl-tech td img {vertical-align: top;}
+
+/***************************************************************
+Specifications Tab table
+****************************************************************/
+.tbl-spec {width: 100%;}
+.tbl-spec td {padding: 8px;vertical-align: top;}
+.tbl-spec td img {vertical-align: top;}
+
+/***************************************************************
+Certification Tab table
+****************************************************************/
+.tbl-cert {width: 100%;}
+.tbl-cert td {padding: 8px;vertical-align: top;}
+.tbl-cert td img {vertical-align: top;}
+.tbl-cert ul {padding:5px;}
+.tbl-cert ul li a {line-height: 1.4em;}
+
+/***************************************************************
+Mega Tab Menu
+****************************************************************/
+
+/*This is the drop-down mega panel*/
+ul#menu li.mega div {
+  width: 895px;
+  height:auto;
+  position: absolute;
+  top: 27px;
+  left: 0px;
+  border: 1px solid #d1d1d1;
+  background: url(bg-waves.gif) top left no-repeat;
+  overflow: hidden;
+  margin: 0;
+  padding:0;
+}
+
+ul#menu  {display: inline;}
+ul#menu li.mega {float: left;display: inline;list-style-type: none;margin: 0;padding: 0; }
+ul#menu div {display: none;}
+
+/*WARNING - Be careful changing these.  The mega tabs are precisely designed!*/
+a.tab-tech {position: absolute; top:0px; left:0px;z-index: 100; width: 131px; height: 27px; background: url(tab-tech.gif) top left no-repeat;}
+a.tab-spec {position: absolute; top:0px; left:130px;z-index: 100;width: 130px; height: 27px; background: url(tab-spec.gif) top left no-repeat;}
+a.tab-cert {position: absolute; top:0px; left:260px;z-index: 100;width: 192px; height: 27px; background: url(tab-cert.gif) top left no-repeat;}
+
+a.tab-tech-on {background-image: url(tab-tech-hover.gif);}
+a.tab-spec-on {background-image: url(tab-spec-hover.gif);}
+a.tab-cert-on {background-image: url(tab-cert-hover.gif);}
+
+a:hover.tab-tech {z-index: 800; top:0px;background-color: aqua;background: url(tab-tech-hover.gif) top left no-repeat;}
+a:hover.tab-spec {z-index: 800; top:0px;background-color: aqua;background: url(tab-spec-hover.gif) top left no-repeat;}
+a:hover.tab-cert {z-index: 800; top:0px;background-color: aqua;background: url(tab-cert-hover.gif) top left no-repeat;}
+
+ul#menu li.hovering a.tab-tech {z-index: 800; top:0px;background-color: aqua;background: url(tab-tech-hover.gif) top left no-repeat;}
+ul#menu li.hovering a.tab-spec {z-index: 800; top:0px;background-color: aqua;background: url(tab-spec-hover.gif) top left no-repeat;}
+ul#menu li.hovering a.tab-cert {z-index: 800; top:0px;background-color: aqua;background: url(tab-cert-hover.gif) top left no-repeat;}
+
+ul#menu li.hovering div {display: inline;width: 895px;height:auto;}
+
+
+/***************************************************************
+SIDEBAR NAVIGATION - Tertiary Template
+****************************************************************/
+ul.nav-sidebar { margin:0;}
+ul.nav-sidebar li {border-bottom: 1px solid #d9ebf4;}
+ul.nav-sidebar li a {
+	color: #666666;
+	font-weight: bold;
+	display: block;
+	text-decoration: none;
+	padding:5px;
+}
+ul.nav-sidebar li ul li {border-top: 1px solid #d9ebf4;border-bottom: none;}
+
+ul.sub { margin:5px 0 0 0;}
+ul.sub li a {
+	background-image:url(arw_gry.png);
+	background-repeat:no-repeat;
+	background-position:center left;
+	padding: 5px 0px 5px 20px;
+	color:#666666;
+	font-weight: normal;
+	display: block;
+	text-decoration: none;}
+
+ul.sub li a:hover {
+	background-color:#cccccc;
+	background-image:url(arw_blu.png);
+	background-repeat:no-repeat;
+	background-position: left;
+	padding: 5px 0px 5px 20px;
+	color:#007bb9;
+	font-weight: normal;
+	display: block;
+	text-decoration: none;}
+	
+ul.sub2 { margin:0px 0 0 20px;}	
+ul.sub2 li a {
+	background-image:url(arw_gry.png);
+	background-repeat:no-repeat;
+	background-position:center left;
+	padding: 5px 0px 5px 20px;
+	color:#666666;
+	font-weight: normal;
+	display: block;
+	text-decoration: none;}
+
+ul.sub2 li a:hover {
+	background-color:#cccccc;
+	background-image:url(arw_blu.png);
+	background-repeat:no-repeat;
+	background-position: left;
+	padding: 5px 0px 5px 20px;
+	color:#007bb9;
+	font-weight: normal;
+	display: block;
+	text-decoration: none;}
+
+body#home a#homenav,
+body#docsis a#docsisnav,
+body#packetcable a#packetcablenav,
+body#opencable a#opencablenav,
+body#vod_metadata a#vod_metadatanav,
+body#cross_project a#cross_projectnav,
+body#wireless a#wirelessnav,
+body#cable_home a#cable_homenav,
+body#packet_cable a#packet_cable,
+body#advanced_advertising a#advanced_advertisingnav,
+body#olca a#olca,
+body#peerconnect a#peerconnect,
+body#wireless a#wireless
+ {
+color:#007bb9;
+}
+
+/********these have sub navigation fixes spacing********/
+body#docsis a#docsis,
+body#news_rooms a#news_rooms,
+body#events a#events,
+body#staff a#staff,
+body#doczone_registration a#doczone_registration,
+body#life_at_mycompany a#life_at_mycompany,
+body#packetcable a#packetcable,
+body#opencable a#opencable,
+body#vod_metadata a#vod_metadata,
+body#cross_project a#cross_project,
+body#wireless a#wireless,
+body#cable_information_services a#cable_information_services,
+body#business_services a#business_services,
+body#advancedadvertising a#advancedadvertising,
+body#olca a#olca,
+body#udcp a#udcp,
+body#wireless a#wireless {
+	color:#007bb9;
+	margin-bottom:-5px;
+}
+
+/********normal left nav hilight********/
+body#overview a#overview,
+body#about_mycompany a#about_mycompany,
+body#member_companies a#member_companies,
+body#patents a#patents,
+body#inventions a#inventions,
+body#board_of_directors a#board_of_directors,
+body#current_opportunities a#current_opportunities,
+body#compensation_benefits a#compensation_benefits,
+body#career_tracks a#career_tracks,
+body#interview_process a#interview_process,
+body#faqs a#faqs,
+body#certified_qualified_products a#certified_qualified_products,
+body#development_lab a#development_lab,
+body#certification_process a#certification_process,
+body#nondisclosure_agreements a#nondisclosure_agreements,
+body#spec_development a#spec_development,
+body#security_documents a#security_documents,
+body#advanced_advertising a#advanced_advertising,
+body#cablehome a#cablehome,
+body#go2broadband a#go2broadband,
+body#life_in_colorado a#life_in_colorado,
+body#temporary_housing a#temporary_housing,
+body#mission a#mission,
+body#sanfran a#sanfran
+{
+color:#007bb9;
+}
+
+
+body.subnav_1  a.subnav_1,
+body.subnav_2  a.subnav_2,
+body.subnav_3  a.subnav_3,
+body.subnav_4  a.subnav_4,
+body.subnav_5  a.subnav_5,
+body.subnav_6  a.subnav_6,
+body.subnav_7  a.subnav_7,
+body.subnav_8  a.subnav_8,
+body.subnav_9  a.subnav_9,
+body.subnav_10  a.subnav_10,
+body.subnav_11  a.subnav_11,
+body.subnav_12  a.subnav_12,
+body.subnav_13  a.subnav_13,
+body.subnav_14  a.subnav_14,
+body.subnav_15  a.subnav_15,
+body.subnav_16  a.subnav_16,
+body.subnav_17  a.subnav_17,
+body.subnav_18  a.subnav_18,
+body.subnav_19  a.subnav_19,
+body.subnav_20  a.subnav_20,
+body.subnav_21  a.subnav_21,
+body.subnav_22  a.subnav_22,
+body.subnav_23  a.subnav_23,
+body.subnav_24  a.subnav_24 {
+	background-color:#cccccc;
+	background-image:url(arw_blu.png);
+	background-repeat:no-repeat;
+	background-position: left;
+	padding: 5px 0px 5px 20px;
+	color:#007bb9;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+/***************************************************************
+ACCORDION - Secondary Template
+****************************************************************/
+#accordion {padding: 0;}
+#accordion p {padding-bottom:8px;}
+#accordion p.heading {padding-bottom:0px;}
+#accordion div.left0 {float: left;display: inline;width:605px; padding: 1em 0 1em 1.2em;}
+#accordion div.left {float: left;display: inline;width:450px; padding: 1em 0 1em 1.2em;}
+#accordion div.right {float: right; display: inline;width: 130px; background: url(bg-fade-accordion.png) top right no-repeat; padding: 1em 10px 1em 10px;}
+#accordion div.right ul li {background: url(arrow-right4.gif) center left no-repeat;padding-left: 10px;}
+
+#accordion2 {padding: 0;}
+#accordion2 p {padding-bottom:8px;}
+#accordion2 p.heading {padding-bottom:0px;}
+#accordion2 div.left0 {float: left;display: inline;width:505px; padding: 1em 0 1em 1.2em;}
+#accordion2 div.left {float: left;display: inline;width:350px; padding: 1em 0 1em 1.2em;}
+#accordion2 div.right {float: right; display: inline;width: 130px; background: url(bg-fade-accordion.png) top right no-repeat; padding: 1em 10px 1em 10px;}
+#accordion2 div.right ul li {background: url(arrow-right4.gif) center left no-repeat;padding-left: 10px;}
+
+
+/***************************************************************
+Footer Navigation
+****************************************************************/
+#footer ul {float: right;display: inline;}
+#footer ul li {float: left;display: inline;}
+#footer a {padding: 0 0 0 15px;}

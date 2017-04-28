@@ -1,0 +1,52 @@
+x User logs in as adminstrator
+x Sees and clicks a checkin link
+x Sees an ordered list of user, account, registration link, attending, check-in, paid, here, comments, pay
+x There's a search box which searches by the user/company
+x Back to admin link
+x When pay is click, admin is taken to pay form with info filled in
+xWhen checkbox is checked, it is stored and pushed to other users
+xwhen comments changes, the update button appears that can be pressed to save
+xWhen paid is checked, set the total_paid to to invoice total amount
+xWhen paid is unchecked set the total_paid to current value - invoice total or 0 which ever is more
+
+
+x Jkirby1325 fills out registration with 2 additional people
+x metropolisii fills out registration with no additional people
+x jkirby makes no change to existing registration
+x jkirby add additional people to existing registration
+x admin checks in a person for each
+x admin makes present for each
+x admin attending for each
+x admin pays for each
+x admin comments for each
+x admin updates comments for each
+x admin unattends each
+x admin unpresents each
+x admin unchecks each
+x admin unpays each
+x admin removes comments each
+x admin edits company for each
+x admin edits name for each
+x admin adds additional people to jkirby registration
+x admin adds additional people to metropolisiii registration that changes payment
+x admin deletes person from end of jkirby registration
+x Admin deletes person for the middle of jkirby registration
+x Admin deletes person from the beggining of jkirby registration
+x Admin pays for jkirby1325
+x admin pays for metropolisiii
+x erase data
+
+x metropolisiii edits company
+x metropolisiii edit name
+x metropolisiii adds people to registration
+x metropolisiii deletes people from registration
+x metropolisiii makes partial payment
+x metropolisiii fills out registration and pays
+
+xjkirby fills out registration with 2 additional people and pays
+xjkirby fills out registration and over pays
+xjkirby adds additional registration
+xjkirby removes additional registration
+xjkirby adds name without first name in the middle
+xjkirby adds name without first name at the end
+xjkirby adds name and adds comments to new name

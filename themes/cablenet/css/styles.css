@@ -1,0 +1,54 @@
+body{
+	background-color: #cfd4d8;
+	color: #000000;
+    font-family: arial,helvetica,sans-serif;
+    font-size: 11px;
+    margin: 0;
+}
+
+h3, h4{
+	color: #F96211;
+    font-family: arial,helvetica,sans-serif;
+    font-size: 13px;
+    font-variant: small-caps;
+    font-weight: bolder;
+    margin-bottom: 6px;
+    vertical-align: top;
+	
+}
+
+h3 a:link{
+    color: #727DAA;
+    text-decoration: none;
+}
+.fb_section{
+	color:#000000 !important;
+}
+
+
+h5{
+    color: #8B8D09;
+    font-family: arial,helvetica,sans-serif;
+    font-size: 13px;
+    font-variant: small-caps;
+    font-weight: bolder;
+    margin-bottom: 6px;
+    vertical-align: top;
+	border:none;
+}
+
+#optional_buttons{
+	display:none;
+}
+
+div.clbox4 {
+    border-color: #A9A1A1 !important;
+    border-radius: 5px !important;
+    border-style: solid !important;
+    border-width: thin !important;
+    color: #FFCFCF !important;
+    font-size: 1.3em;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    padding: 5px;
+}

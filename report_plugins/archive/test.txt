@@ -1,0 +1,4 @@
+User pays via the system - Everyone gets listed as paid
+New people added to the form after paid are not listed as paid
+If the user pays on site, the admin clicks the pay button and 5 other people listed on the form are also checked
+Admin has the ability to uncheck one and check another (basically if more than 0 are already checked)

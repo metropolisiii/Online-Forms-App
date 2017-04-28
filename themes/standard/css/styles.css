@@ -1,0 +1,31 @@
+body{
+	background-color: #C1CBDD;
+    color: #333333;
+    font: 70% Verdana,Arial,Helvetica,sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.btn-submit > input, #saveform {
+	 background: none repeat scroll 0 0 purple !important;
+   border-color: #000000;
+    color: #FFFFFF;
+    font-size: 1.8em;
+}
+
+div#form_container {
+	 -moz-box-shadow:   0 9px 13px 4px #555555;
+  -webkit-box-shadow: 0 9px 13px 4px #555555;
+   box-shadow: 0 9px 13px 4px #555555;
+	 background: none repeat scroll 0 0 #F0F9FF;
+    border-radius: 20px 20px 20px 20px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    padding: 15px;
+    width: 960px;
+
+
+#saveform{
+	 background: none repeat scroll 0 0 #AAAAAA !important;
+}

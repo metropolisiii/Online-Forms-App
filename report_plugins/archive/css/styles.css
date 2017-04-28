@@ -1,0 +1,15 @@
+.slick-header-column {
+    color: #000 !important;
+}
+#myGrid{
+	border:none;
+}
+.ui-state-default {
+    background: none repeat scroll 0 0 #8acaf7 !important;
+}
+a.button {
+    background: none repeat scroll 0 0 #2269ff;
+    color: #fff;
+    font-size: 14px;
+    padding: 5px;
+}

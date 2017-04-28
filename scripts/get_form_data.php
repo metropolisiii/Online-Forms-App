@@ -1,0 +1,61 @@
+<?php
+/**
+* Get form answers from the form asked for via the formid nd returns a JSON representation of the form answers
+* @author Jason Kirby <jkirby1325@gmail.com>
+*/
+	session_start();
+	include("settings.php");
+	include("connect.php");
+	include("../misc/functions.php");
+	$_POST=sanitize($_POST);
+	$filepath=explode("/",$_POST['filepath']); //Need to get the actual name of the page the form so that when the form is loaded for later use, we know what values to put into that form (and in case the name gets changed manually)
+	$filepath=$filepath[count($filepath)-1];
+	$looped=false;
+	
+	$result=mysql_query("SELECT requires_login FROM accounts WHERE url LIKE '".$forwarded_directory."'");
+	
+	$ulr=mysql_fetch_array($result);
+	if ($ulr['requires_login']==1)
+		$user_login_required=true;
+		
+	//If an admin is editing another user's form, a $_POST will be sent. Otherwise, when the user is editing his or her own form, the $_SESSION variable is used
+	if (!$user_login_required)
+		$userid="__none__";
+	else if (!empty($_POST['userid']))
+		$userid=$_POST['userid'];
+	else 
+		$userid=$_SESSION['userid'];
+	$url=explode("?q=", $filepath);
+	$filepath=explode("?account=",$url[0]);
+	$filepath=$filepath[0];
+	$url=$url[1];
+	$query="SELECT * FROM user_form INNER JOIN form_answers ON user_form_id=user_form.id where userid='".$userid."' AND pagename='".$filepath."'";
+	if (!$user_login_required)
+		$query.=" AND url='".$url."'";
+	
+	$result=mysql_query($query);
+	
+	$json="[";
+	while ($fields=mysql_fetch_array($result)){
+		$looped=true;
+		$fields['response']=str_replace('"',"'",$fields['response']);
+		$fields['response']=str_replace('“',"'",$fields['response']);
+		$fields['response']=str_replace('”',"'",$fields['response']);
+		$fields['response']=str_replace(array("\r", "\n","\t"), array('', '\r\n',' '), $fields['response']);
+		$fields['response']=str_replace('\\,','\\\,', $fields['response']);
+		$fields['response'] = preg_replace('/\xE0[\x80-\x9F][\x80-\xBF]'.
+ '|\xED[\xA0-\xBF][\x80-\xBF]/S', '', $fields['response']);
+		$fieldid = preg_replace("/&lt;.+?&gt;/is", "", str_replace(" ", "_", $fields['field_id']) );
+	    $fieldid=preg_replace("/<.+?>/is", "", str_replace(" ", "_", $fieldid) ) ;
+		$fieldid=html_entity_decode($fieldid, ENT_QUOTES);
+		$patterns[0] = '/[^a-zA-Z0-9_-]/';
+	    $replacements = array();
+		$replacements[0] = '';
+        $fieldid = preg_replace($patterns, $replacements, trim($fieldid));
+		$json.='{"'.$fieldid.'":"'.$fields['response'].'"},';
+	}
+	if ($looped)
+		$json=substr_replace($json ,"",-1);
+	$json.="]";
+	print($json);
+?>

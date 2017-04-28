@@ -1,0 +1,6 @@
+x Add a plugin drop down to the make reports page
+x If delete and archive is selected, have a custom column appear on the report with checkboxes
+x When a record is deleted, send the form answers to an archive table
+x Makes sure that archives don't show on the main table
+x View archive
+x Delete from archive

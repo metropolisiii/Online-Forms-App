@@ -1,0 +1,35 @@
+/*****************************************************************
+CSS Stylesheet - LAYOUT
+
+Website: mycompany
+Author: Brandt Reed
+E-mail: brandt@treblered.com
+Created: 2009.10.31
+*****************************************************************/
+
+
+#wrap {width:960px;margin:0 auto;# position: relative;}
+#header {position: relative;background:#fbfdfe url(fade-header.png) bottom left no-repeat;height: 110px;width: 960px;}
+.logo {position: absolute;top:16px;left:10px;width:224px;height:55px;}
+#nav-main {height: 27px;width:960px;position: absolute;top:83px;left:0px;z-index: 400; }
+.line-top {position:absolute;top:27px;right:0px; z-index: 600; height:1px; width: 508px; background: url(line.gif) top left no-repeat;} /*Assists with tabbing menu*/
+#promo {width:950;height:250px;height: auto;position:relative;background: url(bg-promo.png) top left no-repeat; padding: 5px 0 5px 5px;margin-bottom: 10px;} /*Homepage promo slider panel*/
+#blue-bar-top {width: 960px; height: 20px; background: url(blue-bar-top.png) top left no-repeat;} /*Blue fade bar that sits under tabs on subpages*/
+#intro {background-color: #fff; height: auto;padding: 10px 0 ;} /*Container element for 3 content bubbles on homepage*/
+
+#main {float:right;display:inline;width:635px;padding:20px 0 20px 10px;}
+#sidebar {float:left;display:inline;width:305px;padding:20px 10px 20px 0;}
+
+/*Tertiary Template*/
+#main2 {float:left;display:inline;width:710px;padding:20px 10px 20px 10px;}
+#sidebar2 {float:left;display:inline;width:220px;padding:30px 10px 20px 0;}
+#sidebar2-right {float:right;display:inline;padding:20px 0 20px 10px;width:175px;}
+#sidebar2-right a {text-align:right;}
+
+/*Footer*/
+#footer {border-top: 1px solid #d1d1d1; clear:both;padding:10px 2px;background:#fff;}
+#footer span {float: left;display: inline;}
+* html #footer {height:1px;}
+
+/*Accordion*/
+#accordion{display:none;}

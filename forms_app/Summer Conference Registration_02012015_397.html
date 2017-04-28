@@ -1,0 +1,288 @@
+<?php session_start(); include("../scripts/settings.php"); include("../scripts/connect.php"); include("../misc/functions.php"); if (empty($_POST["userid"])) $_POST["userid"]=$_SESSION["userid"]; if (!empty($_GET['account'])) $_SESSION['user_account'] = $_GET['account']; ?>
+<?php
+	$_GET=sanitize($_GET);
+	$_POST=sanitize($_POST);
+	$uri=explode("&account=", $_SERVER['REQUEST_URI']);
+	$uri=$uri[0];
+	$formid=explode("_",$uri);
+	$formid=$formid[count($formid)-1];
+	$formid=explode(".html", $formid);
+	$formid=$formid[0];
+	$query=mysql_query("SELECT enabled, visible, date, form_invisible_message, form_no_reg_message, accounts.theme AS spectheme, fb_savedforms.theme AS theme, sitename from fb_savedforms INNER JOIN accounts on accounts.url=fb_savedforms.sitename WHERE fb_savedforms.id=".$formid);
+	$rec=mysql_fetch_array($query);
+	if (!empty($rec['spectheme']))
+		$theme=$rec['spectheme'];
+	else
+		$theme=$rec['theme'];
+	$query2=mysql_query("SELECT * FROM user_form WHERE formid=".$formid." AND url='".$_GET['q']."'");
+	$userinfo=mysql_fetch_array($query2);
+	$visible=$rec['visible'];
+	$enabled=$rec['enabled'];
+	include_once("/var/www/forms_app/classes/logController.php");
+	$log=new logController();
+	$log->log("Accessed ".$uri);
+	
+?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+		<meta name="viewport" content="width=960, user-scalable=yes"/>
+		<title>Summer Conference Registration</title>
+		
+		<script src='../js/jquery-1.3.2.min.js'></script>
+
+		<script>
+			document.domain = "mycompany.com"
+			/* function getQueryString() {
+                var queryStringKeyValue = window.parent.location.search.replace('?', '').split('&');
+				
+                var qsJsonObject = {};
+                if (queryStringKeyValue != '') {
+                    for (i = 0; i < queryStringKeyValue.length; i++) {
+                        qsJsonObject[queryStringKeyValue[i].split('=')[0]] = queryStringKeyValue[i].split('=')[1];
+                    }
+                }
+                return qsJsonObject;
+            }
+			*/
+			
+			$(document).ready(function() {
+				<?php if ($userinfo['submitted'] == 1): ?>
+					$('[id=saveform]').attr("disabled","disabled");
+				<?php endif; ?>
+				$.ajax({
+					type: "POST",
+					url: "../scripts/get_forwarded_directory.php",
+					data: { forwarded_url: window.location.pathname},
+					success: function(){
+						<?php if (empty($_SESSION['forwarded_directory'])): ?>
+							location.reload();
+						<?php endif; ?>
+					}
+				});
+			//	var q=getQueryString().q;
+				var validformat=/^\d{2}\/\d{2}\/\d{4}$/;
+				$.post('../scripts/get_form_data.php',{filepath:'<?php echo $uri; if (!empty($_GET['account'])) echo "?q='+q+'"?>', userid:'<?php echo $_POST['userid']; ?>'}, function(data){
+					if (data !=='[]'){
+						$('input:checkbox').removeAttr('checked');
+						$('input:radio').removeAttr('checked');
+						$('option:selected').removeAttr('selected');
+					}
+					var obj = jQuery.parseJSON(data);
+					$(obj).each(function(i,val){
+						$.each(val,function(k,v){
+							if ($('input[name='+k+']').is(':radio')){
+								$('input[name='+k+'][value="'+v+'"]').first().attr('checked','checked');
+							}
+							else if ($('input[name^='+k+']').is(':checkbox')){
+								 $('input[name^='+k+']').each(function() {
+									if (v.indexOf($(this).val()) >= 0)
+										$(this).attr('checked','true');
+								 });
+							}
+							else if($('#'+k).is('select'))
+								$('select[name='+k+']').val(v);
+							else	
+								$('#'+k).val(v);
+						});
+
+					});
+					var d = new Date();
+					$('#date_of_completion_completiondate').val();
+					$('#date_of_completion_completiondate').val(d.getMonth()+1+"/"+d.getDate()+"/"+d.getFullYear());
+				});
+				
+				$('.word_counter').parent().prev('textarea').keyup(function(){
+					var text = $(this).val();
+					if(text === "") {
+						wordcount = 0;
+					} else {
+						wordcount = $.trim(text).split(" ").length;
+					}
+					$(this).next().find('.word_counter').html(wordcount);
+				});
+				$('.character_counter').parent().prevAll('textarea').keyup(function(){
+					var text = $(this).val();
+					if(text === "") {
+						charactercount = 0;
+					} else {
+						charactercount = $.trim(text).length;
+					}
+					$(this).nextAll().find('.character_counter').first().html(charactercount);
+				});
+			
+				$('#submitform, #submitform2').click(function(e){
+					var emptyfield=false;
+					var validatedate=false;
+					$('.required_field').each(function(){
+						if ($(this).val()==='')
+							emptyfield=true;
+					});
+					$('.validate_date').each(function(){
+						if ($(this).val()!="" && !validformat.test($(this).val()))
+							validatedate=true;
+					});
+				
+					if (emptyfield){
+						$('.required_field').each(function(){
+							if ($(this).val()==='')
+								$(this).addClass('highlighted');
+						});
+						alert("Please fill out required fields.");
+					}
+					if (validatedate){
+						$('.validate_date').each(function(){
+							if ($(this).val()!="" && !validformat.test($(this).val()))
+								$(this).addClass('highlighted');
+						});
+						alert("Please use correct date format (mm/dd/YYYY).");
+					}
+					if (emptyfield || validatedate)
+						e.preventDefault();
+				});
+			});
+			$(window).bind('load',function(){
+				$('.word_counter').parent().prev('textarea').each(function(){
+					var text = $(this).val();
+					if(text === "") {
+						wordcount = 0;
+					} else {
+						wordcount = $.trim(text).split(" ").length;
+					}
+					$(this).next().find('.word_counter').html(wordcount);
+				});
+				$('.character_counter').parent().prevAll('textarea').each(function(){
+					var text = $(this).val();
+					if(text === "") {
+						charactercount = 0;
+					} else {
+						charactercount = $.trim(text).length;
+					}
+					$(this).nextAll().find('.character_counter').first().html(charactercount);
+				});
+			});
+			function remember( selector ){
+				$(selector).each(function(){
+					//if this item has been cookied, restore it
+					var name = $(this).attr('name');
+					var val='';
+					val=$(this).val();
+					//assign a change function to the item to cookie it
+					$.cookie(name, val, { path: '/', expires: 365 });
+				});
+			}
+
+			function retrieve( selector ){
+				$(selector).each(function(){
+					//if this item has been cookied, restore it
+					var name = $(this).attr('name');
+					var val='';
+					val=$(this).val();
+					if( $.cookie( name ) ){
+						$(this).val( $.cookie(name) );
+					}
+					//assign a change function to the item to cookie it
+					$.cookie(name, $(this).val(), { path: '/', expires: 365 });
+				});
+			}
+		</script>
+		<link type="text/css" rel="stylesheet" href="../css/styles.css">
+		<link type="text/css" rel="stylesheet" href="../themes/<?php echo $theme; ?>/css/styles.css">
+		<style type="text/css">
+
+				.frmb table tr td:first-child{
+					width:35%;
+				}
+				strong{
+					font-weight:bold !important;
+					
+				}
+				.fb_section{
+					border-bottom: thin solid #3366FF;
+					color: #3366FF;
+					font-size: 1.2em;
+					font-weight: bold;
+					margin-bottom: 30px;
+					margin-top: 30px;
+					width: 100%;
+				}
+		
+			.highlighted{
+				background:#FFFFCC;
+			}
+			td div{
+				margin-bottom:10px;
+				
+			}
+			div.clbox4{
+			background: #1e5799; /* Old browsers */
+			background: -moz-linear-gradient(top, #1e5799 0%, #2989d8 50%, #207cca 51%, #7db9e8 100%); /* FF3.6+ */
+			background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(50%,#2989d8), color-stop(51%,#207cca), color-stop(100%,#7db9e8)); /* Chrome,Safari4+ */
+			background: -webkit-linear-gradient(top, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* Chrome10+,Safari5.1+ */
+			background: -o-linear-gradient(top, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* Opera 11.10+ */
+			background: -ms-linear-gradient(top, #1e5799 0%,#2989d8 50%,#207cca 51%,#7db9e8 100%); /* IE10+ */
+			filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 ); /* IE6-9 */
+
+			 background: linear-gradient(to bottom, #1E5799 0%, #207CCA 28%, #2989D8 41%, #7DB9E8 100%) repeat scroll 0 0 transparent;
+			border-radius: 5px 5px 5px 5px;
+			color: #FFFFFF;
+			font-size: 1.3em;
+			margin-bottom: 25px;
+			margin-top: 25px;
+			padding: 5px;
+			}
+			p{
+				font-size: 11px;
+				font-weight: bold;
+			}
+			div.clbox4 p{
+				font-size: 1.1em;
+			}
+		</style>
+	</head>
+	<body>
+		<?php if (file_exists('../themes/'.$theme.'/header.php')) include('../themes/'.$theme.'/header.php'); ?>
+		<?php
+	
+			if (($rec['date'] < date("U") || $visible == 0 || $enabled==0) && $_SESSION['membertype'] !='admin'){
+				
+				if ($rec['date'] < date("U"))
+					echo "This form has closed.<br/>";
+				if ($visible==0)
+					echo $rec['form_invisible_message']."<br/>";
+				else if ($enabled==0)
+					echo $rec['form_no_reg_message']."<br/>";
+				exit;
+			}
+			
+			if ($userinfo['accepted'] == 0 && !is_null($userinfo['accepted'])  && $_SESSION['membertype'] !='admin'){
+				echo "This form has already been reviewed and needs more information.";
+				exit;
+			}
+			if ($userinfo['accepted'] == 1 && !is_null($userinfo['accepted'])  && $_SESSION['membertype'] !='admin'){
+				echo "This form has already been reviewed and it was accepted.";
+				exit;
+			}
+		?>
+		<div id="form_container">
+			<div id='h1_title'><h1>Summer Conference Registration</h1></div>
+			<ul class="breadcrumbs"></ul><!--close breadcrumbs-->
+			<div class="page-content">
+				<div class="clbox5" style="clear:both">
+					<?php if($_SESSION['membertype'] == 'admin'): ?>
+					<?php if (empty($_GET['q'])): ?>
+					<div id="back_button"><A HREF="../admin.php"><< Back</A></div>
+					<?php else: ?>
+					<div id="back_button"><A HREF="../review.php?id=<?php echo $formid;?>"><< Back</A></div>
+					<?php endif; ?>
+					<?php endif; ?>
+					<form id="formform" enctype="multipart/form-data" class="frm-bldr" method="post" action="../storeform.php<?php if (!empty($_GET['account'])) echo "?account=".$_GET["account"]; ?>"><div class="frmb"><div id="optional_buttons" style="left: 0;position: fixed;top: 37px;width: 370px;"><div  style="float:left" class="btn-submit"><input type="submit" id="submitform" name="submit" value="Submit" /></div><div><input type="submit" value="Save for completion later"  name="saveforlater" id="saveform"/></div></div><input type="hidden" name="fid" value="397"/><input type="hidden" name="url" value="<?php echo $_GET['q']; ?>"/><input type="hidden" name="userid" value="<?php echo $_POST['userid']; ?>"/><table><tr><td colspan="2"><div class="clbox4"><p><p>mycompany 2013 Summer Conference Registration</p></p></div></td></tr></div></td></tr><tr><td align="left"><div class="input_text required" id="fld-name_of_person_being_registered"><label for="name_of_person_being_registered">Name of person being registered *</label></td><td align="left"><input type="text" id="name_of_person_being_registered" name="name_of_person_being_registered" value="" class=' required_field  '/></div></td></tr><tr><td align="left"><div class="input_text" id="fld-company_name"><label for="company_name">Company Name </label></td><td align="left"><input type="text" id="company_name" name="company_name" value="" class=' '/></div></td></tr><tr><td align="left"><div class="input_text required" id="fld-email"><label for="email">Email *</label></td><td align="left"><input type="text" id="email" name="email" value="" class=' required_field  '/></div></td></tr><tr><td align="left"><div class="input_text" id="fld-address"><label for="address">Address </label></td><td align="left"><input type="text" id="address" name="address" value="" class=' '/></div></td></tr><tr><td align="left"><div class="input_text" id="fld-phone"><label for="phone">Phone </label></td><td align="left"><input type="text" id="phone" name="phone" value="" class=' '/></div></td></tr><tr><td align="left"><div class="input_text required" id="fld-administrators_name"><label for="administrators_name">Administrator&#039;s Name *</label></td><td align="left"><input type="text" id="administrators_name" name="administrators_name" value="" class=' required_field  '/></div></td></tr><tr><td align="left"><div class="input_text required" id="fld-administrators_email"><label for="administrators_email">Administrator&#039;s Email *</label></td><td align="left"><input type="text" id="administrators_email" name="administrators_email" value="" class=' required_field  '/></div></td></tr></table><div style="float:left" class="btn-submit"><input type="submit" id="submitform2" name="submit" value="Submit" /></div></div><div><input type="submit" value="Save for completion later"  name="saveforlater" id="saveform"/></div></form>
+					
+				</div>
+			</div><!--close page-content-->
+		</div><!--close form_container-->
+		<?php if(file_exists('../themes/'.$theme.'/footer.php')) include('../themes/'.$theme.'/footer.php'); ?>
+	</body>
+</html>

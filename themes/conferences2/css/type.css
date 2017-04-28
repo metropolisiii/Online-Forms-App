@@ -1,0 +1,123 @@
+/*****************************************************************
+CSS Stylesheet - TYPE
+
+Website: mycompany
+Author: Brandt Reed
+E-mail: brandt@treblered.com
+Created: 2009.10.31
+
+COLORS
+blue - #007bb9
+*****************************************************************/
+
+h1 {font-size: 300%;}
+h2 {font-size: 140%;}
+h3 {font-size: 150%;color: #007bb9;}
+h4 {font-size: 130%; font-weight: bold; padding-bottom:2%;}
+h5 {font-size:110%;}
+a:link,a:visited,a:active {color: #007bb9;text-decoration: underline;}
+a:hover {color: #666;}
+
+.heading {color:#666666; font-weight:bolder;}
+.emphasis {color:red; font-weight:bolder;}
+
+
+/***************************************************************
+HOMEPAGE
+****************************************************************/
+/*Slideshow*/
+#slideshow2 h3 {padding: 10px 0;margin: 0;font-size: 100%;color: #fff; line-height:14px;}
+#slideshow2 p {padding: 0;margin: 0;}
+#slideshow2 div table td.text {font-size: 100%;color: #fff;}
+#slideshow2 div table td.title {font-size: 200%;color: #fff;}
+#slideshow2 a {color: white;}
+/*Cable Connections*/
+#cable-connections ul li {color: #333;}
+#cable-connections a {color: #333;text-decoration: underline;font-size: 85%;}
+
+ul.navlinks a {font-size: 90%;text-decoration: none;background: url(arrow-right2.gif) center left no-repeat;padding-left: 7px;}
+ul.navlinks2 a {font-size: 90%;text-decoration: none;background: url(arrow-right2.gif) center left no-repeat;padding-left: 7px;}
+
+
+/***************************************************************
+SECONDARY
+****************************************************************/
+/*accordion secondary template*/
+#accordion div.right a {color: #666;font-size: 85%;}
+#accordion h4 {color: #007bb9;}
+#accordion h4 a{color: #007bb9; text-decoration:none;}
+#accordion h5 {color: #007bb9;}
+#accordion div.left p {font-size: 85%;color: #666;}
+#accordion div.left0 p {font-size: 85%;color: #666;}
+#accordion div.left0 p a{font-size: 85%;color: #007bb9; text-decoration:none;}
+
+#accordion2 div.right a {color: #666;font-size: 85%;}
+#accordion2 h4 {color: #007bb9;}
+#accordion2 h4 a{color: #007bb9; text-decoration:none;}
+#accordion2 h5 {color: #007bb9;}
+#accordion2 div.left p {font-size: 85%;color: #666;}
+#accordion2 div.left0 p {font-size: 85%;color: #666;}
+#accordion2 div.left0 p a{font-size: 85%;color: #007bb9; text-decoration:none;}
+
+
+/***************************************************************
+TERTIARY
+****************************************************************/
+/*Tertiary page content*/
+div.page-content h3 {
+	padding: 5px 0;
+	font-weight: 900;
+}
+div.page-content h4 {padding: 3px 0;}
+div.page-content p {padding:  0px 0 10px 0;}
+
+
+/***************************************************************
+SHARED
+****************************************************************/
+.superscript { position: relative; top: -0.5em; font-size: 60%; }
+/*breadcrumbs*/
+ul.breadcrumbs li {font-weight: bold;font-size: 90%;color: #007bb9;}
+ul.breadcrumbs li a {text-transform: uppercase;text-decoration: underline;background: url(arrow-right4.gif) center right no-repeat;padding-right: 12px;font-size: 80%;}
+
+/*top right navigation*/
+ul.nav-top a:link,ul.nav-top a:visited,ul.nav-top a:active {background: #e5e7e9 ;font-size: 90%;text-decoration: none;font-weight: bold;color: #007bb9;}
+ul.nav-top a:hover {}
+
+/*footer*/
+#footer {font-size: 11px;}
+#footer span {color:#888888;}
+#footer a {text-decoration: underline;font-weight: normal;color: #007bb9;}
+
+/*search*/
+div.search span a {font-size:85%;color: #007bb9;}
+div.search .txt-search {color: #999;}
+
+/*tab table - technologies*/
+.tbl-tech {font-size: 85%;line-height: 1.3em;padding: 12px 10px; color:#666;}
+.tbl-tech h3 a {color: #007bb9;font-size: 75%;font-weight: bold;}
+.tbl-tech a.btn {float:left;display:inline;margin-top:2px;padding: 3px 4px 1px 4px; text-transform: uppercase; font-size: 70%;background: #e8e8e8 url(fade-btn.png) top left repeat-x;border: 1px solid #d6d6d6;color: #666;text-decoration: none;}
+.tbl-tech a:hover.btn {color: #007bb9;text-decoration: none;}
+
+
+/*tab table - specifications*/
+.tbl-spec {font-size: 85%;line-height: 1.3em;padding: 12px 10px; color:#666;}
+.tbl-spec h3 a {color: #007bb9;font-size: 75%;font-weight: bold;}
+.tbl-spec a.btn {float:left;display:inline;margin-top:2px;padding: 3px 4px 1px 4px; text-transform: uppercase; font-size: 70%;background: #e8e8e8 url(fade-btn.png) top left repeat-x;border: 1px solid #d6d6d6;color: #666;}
+
+/*tab table - certification*/
+.tbl-cert {font-size: 85%;line-height: 1.3em;padding: 12px 10px; color:#666;}
+.tbl-cert h3 a {color: #007bb9;font-size: 75%;font-weight: bold;}
+.tbl-cert a.btn {float:left;display:inline;margin-top:2px;padding: 3px 4px 1px 4px; text-transform: uppercase; font-size: 70%;background: #e8e8e8 url(fade-btn.png) top left repeat-x;border: 1px solid #d6d6d6;color: #666;}
+.tbl-cert ul li a {color:#666;text-decoration: underline;}
+/*clbox4 */
+div.clbox4 {
+    margin-bottom: 20px;
+	!margin-bottom: 5px;
+	}
+div.clbox4 p {color: #fff;}
+div.clbox4 h3 {color: #fff;}
+div.clbox4 h4 {color: #000;font-weight: bold;}
+div.clbox4 span.desc {color: #fff;}
+
+
